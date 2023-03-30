@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: online-shop-microservices
+  labels:
+    app: frontend
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: gcr.io/google-samples/microservices-demo/frontend:v0.1.0
+        ports:
+        - containerPort: 8080
+        env:
+          - name: PORT
+            value: "8080"
+        envFrom:
+          - configMapRef:
+              name: my-envs-app
