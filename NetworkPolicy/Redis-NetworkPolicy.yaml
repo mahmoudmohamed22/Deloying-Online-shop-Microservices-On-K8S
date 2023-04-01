@@ -17,7 +17,7 @@ spec:
           podSelector:
             matchLabels:
                app: cartservice
-          ports:
+      ports:
             - protocol: TCP
               port: 6379
 

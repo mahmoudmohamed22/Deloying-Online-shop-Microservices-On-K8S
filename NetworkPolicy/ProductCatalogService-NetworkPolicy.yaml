@@ -17,24 +17,26 @@ spec:
           podSelector:
             matchLabels:
                  app: frontend 
-          ports:
+      ports:
             - protocol: TCP
               port: 3550
+    - from:
         - namespaceSelector:
             matchLabels:
                name: microservices
           podSelector:
             matchLabels:
                 app: recommedationservice
-          ports:
+      ports:
             - protocol: TCP
               port: 3550
+    - from:
         - namespaceSelector:
             matchLabels:
                name: microservices
           podSelector:
             matchLabels:
                 app: checkoutservice
-          ports:
+      ports:
             - protocol: TCP
               port: 3550

@@ -17,6 +17,6 @@ spec:
           podSelector:
             matchLabels:
                 app: checkoutservice
-          ports:
+      ports:
             - protocol: TCP
               port: 50051

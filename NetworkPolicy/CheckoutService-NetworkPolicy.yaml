@@ -18,7 +18,7 @@ spec:
           podSelector:
             matchLabels:
                  app: frontend 
-          ports:
+      ports:
             - protocol: TCP
               port: 5050
   egress:
@@ -29,52 +29,56 @@ spec:
           podSelector:
             matchLabels:
                   app: cartservice
-          ports:
+      ports:
             - protocol: TCP
               port: 7070
+    - to:
         - namespaceSelector:
             matchLabels:
                name: microservices
           podSelector:
             matchLabels:
                 app: productcatalogservice
-          ports:
+      ports:
             - protocol: TCP
               port: 3550
+    - to:
         - namespaceSelector:
             matchLabels:
                name: microservices
           podSelector:
             matchLabels:
                  app: currencyservice
-          ports:
+      ports:
             - protocol: TCP
               port: 7000
-
+    - to:
         - namespaceSelector:
             matchLabels:
                name: microservices
           podSelector:
             matchLabels:
                    app: shippingservice
-          ports:
+      ports:
             - protocol: TCP
               port: 50051
+    - to:
         - namespaceSelector:
             matchLabels:
                name: microservices
           podSelector:
             matchLabels:
                  app: paymentservice
-          ports:
+      ports:
             - protocol: TCP
               port: 50051
+    - to:
         - namespaceSelector:
             matchLabels:
                name: microservices
           podSelector:
             matchLabels:
                  app: EmailService
-          ports:
+      ports:
             - protocol: TCP
               port: 8080

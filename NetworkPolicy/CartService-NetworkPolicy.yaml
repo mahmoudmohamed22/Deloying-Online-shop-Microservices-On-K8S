@@ -18,16 +18,14 @@ spec:
           podSelector:
             matchLabels:
                  app: frontend 
-          ports:
-            - protocol: TCP
-              port: 7070
+
         - namespaceSelector:
             matchLabels:
                name: microservices
           podSelector:
             matchLabels:
                 app: checkoutservice
-          ports:
+      ports:
             - protocol: TCP
               port: 7070
   egress:
@@ -38,6 +36,6 @@ spec:
           podSelector:
             matchLabels:
                  app: redis
-          ports:
+      ports:
             - protocol: TCP
               port: 6379
