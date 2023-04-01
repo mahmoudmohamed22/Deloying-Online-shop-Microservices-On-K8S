@@ -42,4 +42,12 @@ kubectl apply -f "$file"
 
 done
 
+cd ../NetworkPolicy
 
+for file in *
+do
+
+kubectl apply -f "$file"
+ #echo "$file"
+
+done
