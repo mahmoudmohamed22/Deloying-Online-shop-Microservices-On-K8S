@@ -1,0 +1,80 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: checkoutservice-network-policy
+  namespace: online-shop-microservices
+spec:
+  podSelector:
+    matchLabels:
+           app: checkoutservice
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+               name: microservices
+          podSelector:
+            matchLabels:
+                 app: frontend 
+          ports:
+            - protocol: TCP
+              port: 5050
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+               name: microservices
+          podSelector:
+            matchLabels:
+                  app: cartservice
+          ports:
+            - protocol: TCP
+              port: 7070
+        - namespaceSelector:
+            matchLabels:
+               name: microservices
+          podSelector:
+            matchLabels:
+                app: productcatalogservice
+          ports:
+            - protocol: TCP
+              port: 3550
+        - namespaceSelector:
+            matchLabels:
+               name: microservices
+          podSelector:
+            matchLabels:
+                 app: currencyservice
+          ports:
+            - protocol: TCP
+              port: 7000
+
+        - namespaceSelector:
+            matchLabels:
+               name: microservices
+          podSelector:
+            matchLabels:
+                   app: shippingservice
+          ports:
+            - protocol: TCP
+              port: 50051
+        - namespaceSelector:
+            matchLabels:
+               name: microservices
+          podSelector:
+            matchLabels:
+                 app: paymentservice
+          ports:
+            - protocol: TCP
+              port: 50051
+        - namespaceSelector:
+            matchLabels:
+               name: microservices
+          podSelector:
+            matchLabels:
+                 app: EmailService
+          ports:
+            - protocol: TCP
+              port: 8080

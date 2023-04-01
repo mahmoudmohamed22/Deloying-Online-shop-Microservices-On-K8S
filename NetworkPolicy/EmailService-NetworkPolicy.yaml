@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: emailservice-network-policy
+  namespace: online-shop-microservices
+spec:
+  podSelector:
+    matchLabels:
+          app: EmailService
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+               name: microservices
+          podSelector:
+            matchLabels:
+                app: checkoutservice 
+      ports:
+        - protocol: TCP
+          port: 8080
+
+
