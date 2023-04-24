@@ -32,6 +32,13 @@ spec:
           periodSeconds: 5
           tcpSocket:
              port: 6379
+        resources:
+          requests:
+            cpu: 70m
+            memory: 150Mi
+          limits:
+            cpu: 120m
+            memory: 300Mi
       volumes:
         - name: redis-data
           emptyDir: {}
