@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: gcr.io/google-samples/microservices-demo/frontend:v0.1.0
+        image: gcr.io/google-samples/microservices-demo/frontend:v0.2.3
         ports:
         - containerPort: 8080
         env:
@@ -25,3 +25,11 @@ spec:
         envFrom:
           - configMapRef:
               name: my-envs-app
+        livenessProbe:
+          periodSeconds: 5
+          exec:
+             command: ["/bin/grpc_health_probe","-addr=:8080"]
+        readinessProbe:
+          periodSeconds: 5
+          exec:
+             command: ["/bin/grpc_health_probe","-addr=:8080"]

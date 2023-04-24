@@ -16,9 +16,18 @@ spec:
     spec:
       containers:
       - name: productcatalogservice
-        image: gcr.io/google-samples/microservices-demo/productcatalogservice:v0.1.0
+        image: gcr.io/google-samples/microservices-demo/productcatalogservice:v0.2.3
         ports:
         - containerPort: 3550
         env:
           - name: PORT
             value: "3550" 
+        livenessProbe:
+          periodSeconds: 5
+          httpGet:
+            path: /health
+            port: 3550
+        readinessProbe:
+          periodSeconds: 5
+          exec:
+             command: ["/bin/grpc_health_probe","-addr=:3550"]

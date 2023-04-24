@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: cartservice
-        image: gcr.io/google-samples/microservices-demo/cartservice:v0.1.0
+        image: gcr.io/google-samples/microservices-demo/cartservice:v0.2.3
         ports:
         - containerPort: 7070
         env:
@@ -25,3 +25,11 @@ spec:
         envFrom:
           - configMapRef:
               name: my-envs-app
+        livenessProbe:
+          periodSeconds: 5
+          exec:
+             command: ["/bin/grpc_health_probe","-addr=:7070"]
+        readinessProbe:
+          periodSeconds: 5
+          exec:
+             command: ["/bin/grpc_health_probe","-addr=:7070"]
