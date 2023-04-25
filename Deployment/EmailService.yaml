@@ -4,16 +4,16 @@ metadata:
   name: emailservice
   namespace: online-shop-microservices
   labels:
-    app: EmailService
+    app: emailservice
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: EmailService
+      app: emailservice
   template:
     metadata:
       labels:
-        app: EmailService
+        app: emailservice
     spec:
       containers:
       - name: emailservice
