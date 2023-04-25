@@ -1,0 +1,58 @@
+releases:
+  - name: rediscart
+    chart: helm/charts/redis
+    values:
+      - helm/values/redis-service-values.yaml
+
+  - name: adservice
+    chart: helm/charts/microservice
+    values:
+      - helm/values/adservice-service-values.yaml
+
+  - name: cartservice
+    chart: helm/charts/microservice
+    values:
+      - helm/values/cart-service-values.yaml
+
+  - name: checkoutservice
+    chart: helm/charts/redis
+    values:
+      - helm/values/checkout-values.yaml
+
+  - name: currencyservice
+    chart: helm/charts/microservice
+    values:
+      - helm/values/currency-service-values.yaml
+
+  - name: emailservice
+    chart: helm/charts/microservice
+    values:
+      - helm/values/email-service-values.yaml
+
+  - name: frontend
+    chart: helm/charts/microservice
+    values:
+      - helm/values/frontend-service-values.yaml
+
+  - name: paymentservice
+    chart: helm/charts/redis
+    values:
+      - helm/values/payment-service-values.yaml
+
+  - name: productcatalogservice
+    chart: helm/charts/microservice
+    values:
+      - helm/values/productcatalog-service-values.yaml
+
+  - name: recommendationservice
+    chart: helm/charts/microservice
+    values:
+      - helm/values/recommendation-service-values.yaml
+
+  - name: shippingservice
+    chart: helm/charts/microservice
+    values:
+      - helm/values/shipping-service-values.yaml
+
+
+
