@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Values.appName }}
+  namespace: online-shop-microservices
+  labels:
+    app: {{.Values.appName }}
+spec:
+  replicas: {{.Values.appReplicas}}
+  selector:
+    matchLabels:
+      app: {{.Values.appName }}
+  template:
+    metadata:
+      labels:
+        app: {{.Values.appName }}
+    spec:
+      containers:
+      - name: {{.Values.appName }}
+        #image: docker.io/hopa/adservice
+        image: "{{.Values.appImage }}:{{.Values.appVersion }}"
+        ports:
+        - containerPort: {{.Values.containerPort}}
+        env:
+        {{- range .Values.containerEnvVars }}
+          - name: {{.name}}
+            value:  {{.value | quote}}
+        {{- end }}    
+        # livenessProbe:
+        #   periodSeconds: 5
+        #   exec:
+        #      command: ["/bin/grpc_health_probe","-addr=:9555"]
+        # readinessProbe:
+        #   periodSeconds: 5
+        #   exec:
+        #      command: ["/bin/grpc_health_probe","-addr=:9555"]
+        # resources:
+        #   requests:
+        #     cpu: 150m
+        #     memory: 100Mi
+        #   limits:
+        #     cpu: 250m
+        #     memory: 200Mi
